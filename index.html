@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body style="margin:0;display:flex;justify-content:center;align-items:center;height:100vh;background:#111;">
+<button id="b" style="font-size:24px;padding:30px 50px;border-radius:20px;">HOLD</button>
+
+<script>
+let i;
+let b = document.getElementById("b");
+
+function start(){
+  if (navigator.vibrate) {
+    i = setInterval(()=>navigator.vibrate(100),100);
+  } else {
+    alert("Vibration not supported");
+  }
+}
+
+function stop(){
+  clearInterval(i);
+  navigator.vibrate(0);
+}
+
+b.addEventListener("touchstart", start);
+b.addEventListener("touchend", stop);
+b.addEventListener("mousedown", start);
+b.addEventListener("mouseup", stop);
+b.addEventListener("mouseleave", stop);
+</script>
+</body>
+</html>
